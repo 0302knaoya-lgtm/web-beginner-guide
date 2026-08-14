@@ -19,6 +19,8 @@
     .road{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ink);border-radius:9px;overflow:hidden}.road article{min-height:275px;padding:24px 20px;background:#fff;border-right:1px solid var(--line)}.road article:last-child{border:0}.road span{color:var(--purple);font:800 10px ui-monospace,monospace}.road h3{font-size:18px}.road p{color:#626d70;font-size:13px}.road em{font-style:normal;font-size:11px;font-weight:700}.glossary{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:2px solid var(--ink)}.glossary div{padding:22px;border-bottom:1px solid var(--line)}.glossary dt{font-weight:800}.glossary dd{margin:6px 0 0;color:#697275;font-size:13px}.final{padding:95px 24px;text-align:center;background:var(--purple);color:#fff}.final .eyebrow{color:var(--yellow)}.final h2{margin:0;font-size:clamp(34px,5vw,56px);line-height:1.3}.final p{color:#dedfff}.final .button{margin-top:15px;background:#fff;color:var(--ink);box-shadow:5px 5px 0 var(--yellow)}footer{max-width:1060px;margin:auto;padding:32px 24px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#687174}
     @media(max-width:820px){nav{display:none}.hero{grid-template-columns:1fr;text-align:center}.stack{max-width:560px;width:100%;margin:auto}.three,.folder-grid{grid-template-columns:1fr}.three{max-width:560px;margin:auto}.lesson{grid-template-columns:1fr}.formula{grid-template-columns:1fr}.formula>i{transform:rotate(90deg)}.road{grid-template-columns:1fr 1fr}.road article:nth-child(2){border-right:0}.glossary{grid-template-columns:1fr 1fr}}
     @media(max-width:520px){header{height:62px}.hero{padding:55px 18px 80px}.hero h1{font-size:43px}section.block{padding:75px 18px}.steps,.road,.glossary{grid-template-columns:1fr}.road article{border-right:0;border-bottom:1px solid var(--line)}.map div{grid-template-columns:1fr auto 80px}.lesson h3{font-size:28px}footer{flex-direction:column;gap:12px;text-align:center}}
+    .deep{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start;padding:55px 0;border-bottom:1px solid var(--line)}.deep:last-child{border-bottom:0}.deep h3{margin:4px 0 14px;font-size:30px;line-height:1.35}.deep p,.deep li{color:#5e696c;font-size:14px}.deep li{margin:8px 0}.snippet{overflow:hidden;border:1.5px solid var(--ink);border-radius:9px;background:#172024;box-shadow:7px 7px 0 var(--mint)}.snippet .codehead{background:#354044}.snippet pre{margin:0;padding:21px;overflow:auto;color:#e4ede9;font-size:11px;line-height:1.75}.callout{margin-top:20px;padding:19px 22px;border-left:5px solid var(--purple);background:#edebff;color:#4e585b;font-size:13px}.callout strong{color:var(--purple)}.concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.concept{padding:22px;border:1.5px solid var(--ink);border-radius:8px;background:#fff}.concept h3{margin:0 0 9px;font-size:18px}.concept p{margin:0;color:#647073;font-size:13px}.command-table{width:100%;border-collapse:collapse;background:#fff}.command-table th,.command-table td{padding:15px;border:1px solid var(--line);text-align:left;font-size:13px}.command-table th{background:#e9e5db}.project{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project article{padding:24px;border:1.5px solid var(--ink);border-radius:8px;background:#fff}.project h3{margin:0 0 10px}.project p,.project li{color:#626d70;font-size:13px}.project li{margin:7px 0}.danger{background:#fff0ea;border-left-color:var(--coral)}
+    @media(max-width:820px){.deep{grid-template-columns:1fr}.concept-grid,.project{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -50,6 +52,85 @@ server.listen(<span class="gold">3000</span>);</code></pre></div></article><arti
     &lt;/<span class="blue">main</span>&gt;
   );
 }</code></pre></div></article></div></section>
+    <section class="block white"><div class="shell"><div class="heading left"><p class="eyebrow">REACT IN DETAIL</p><h2>Reactの考え方を詳しく理解する</h2><p>Reactは「画面を小さな部品に分け、データが変わったら表示を更新する」ための道具です。</p></div>
+      <article class="deep"><div><p class="eyebrow">COMPONENT &amp; PROPS</p><h3>部品を作り、外から情報を渡す</h3><p>コンポーネントは大文字で始まる関数です。返り値としてJSXを書きます。Propsは関数の引数のようなもので、同じ部品へ異なる名前や色を渡して再利用できます。</p><ul><li>コンポーネントは一つの役割に絞る</li><li>Propsは受け取った側で勝手に変更しない</li><li>配列を表示するときは各要素へ一意な<code>key</code>をつける</li></ul></div><div><div class="snippet"><div class="codehead">ProfileCard.jsx</div><pre><code><span class="pink">function</span> ProfileCard({ name, job }) {
+  <span class="pink">return</span> (
+    &lt;<span class="blue">article</span> className=<span class="green">"card"</span>&gt;
+      &lt;<span class="blue">h2</span>&gt;{name}&lt;/<span class="blue">h2</span>&gt;
+      &lt;<span class="blue">p</span>&gt;{job}&lt;/<span class="blue">p</span>&gt;
+    &lt;/<span class="blue">article</span>&gt;
+  );
+}
+
+<span class="pink">export default function</span> Page() {
+  <span class="pink">return</span> &lt;ProfileCard name=<span class="green">"佐藤"</span> job=<span class="green">"デザイナー"</span> /&gt;;
+}</code></pre></div><div class="callout"><strong>JSXの注意：</strong> HTMLの<code>class</code>はJSXでは<code>className</code>、ラベルの<code>for</code>は<code>htmlFor</code>と書きます。JavaScriptの値は<code>{ }</code>で埋め込みます。</div></div></article>
+      <article class="deep"><div><p class="eyebrow">STATE &amp; EVENT</p><h3>ユーザー操作に応じて表示を変える</h3><p>Stateはコンポーネントが記憶する値です。普通の変数を書き換えるだけではReactは画面を更新しません。<code>useState</code>が返す更新関数を使います。</p><ul><li>Stateは必要最小限にする</li><li>前の値から更新するときは関数形式を使う</li><li>入力欄は<code>value</code>と<code>onChange</code>で状態に結びつけられる</li></ul></div><div><div class="snippet"><div class="codehead">TodoInput.jsx</div><pre><code><span class="pink">import</span> { useState } <span class="pink">from</span> <span class="green">"react"</span>;
+
+<span class="pink">function</span> TodoInput() {
+  <span class="pink">const</span> [text, setText] = useState(<span class="green">""</span>);
+
+  <span class="pink">function</span> handleSubmit(event) {
+    event.preventDefault();
+    <span class="pink">if</span> (!text.trim()) <span class="pink">return</span>;
+    console.log(text);
+    setText(<span class="green">""</span>);
+  }
+
+  <span class="pink">return</span> (
+    &lt;<span class="blue">form</span> onSubmit={handleSubmit}&gt;
+      &lt;<span class="blue">input</span> value={text}
+        onChange={e =&gt; setText(e.target.value)} /&gt;
+      &lt;<span class="blue">button</span>&gt;追加&lt;/<span class="blue">button</span>&gt;
+    &lt;/<span class="blue">form</span>&gt;
+  );
+}</code></pre></div></div></article>
+      <article class="deep"><div><p class="eyebrow">EFFECT</p><h3>外部システムとの同期にuseEffectを使う</h3><p><code>useEffect</code>はAPI通信、タイマー、ブラウザAPIなど、Reactの外側との同期に使います。計算だけで求められる値をEffectでStateへ保存する必要はありません。</p><ul><li>依存配列<code>[]</code>なら初回表示後に実行</li><li>依存値を入れると、その値が変化した後に再実行</li><li>タイマーや購読はクリーンアップ関数で解除</li></ul></div><div><div class="snippet"><div class="codehead">Clock.jsx</div><pre><code><span class="pink">import</span> { useEffect, useState } <span class="pink">from</span> <span class="green">"react"</span>;
+
+<span class="pink">function</span> Clock() {
+  <span class="pink">const</span> [now, setNow] = useState(<span class="pink">new</span> Date());
+
+  useEffect(() =&gt; {
+    <span class="pink">const</span> timer = setInterval(
+      () =&gt; setNow(<span class="pink">new</span> Date()), <span class="gold">1000</span>
+    );
+    <span class="pink">return</span> () =&gt; clearInterval(timer);
+  }, []);
+
+  <span class="pink">return</span> &lt;<span class="blue">time</span>&gt;{now.toLocaleTimeString()}&lt;/<span class="blue">time</span>&gt;;
+}</code></pre></div></div></article>
+    </div></section>
+    <section class="block"><div class="shell"><div class="heading left"><p class="eyebrow">NODE.JS IN DETAIL</p><h2>Node.jsが支えるもの</h2><p>Node.jsはサーバーだけでなく、Next.jsの開発サーバー、ビルド、テスト、パッケージ管理も動かします。</p></div><div class="concept-grid"><article class="concept"><h3>npmとpackage.json</h3><p><code>npm install</code>で依存パッケージを追加します。<code>package.json</code>には名前、バージョン、実行コマンド、依存関係が記録されます。</p></article><article class="concept"><h3>モジュール</h3><p><code>export</code>で公開し、<code>import</code>で別ファイルから利用します。役割ごとにファイルを分けると保守しやすくなります。</p></article><article class="concept"><h3>非同期処理</h3><p>通信やファイル読み込みには時間がかかります。<code>Promise</code>と<code>async / await</code>で完了を待ち、<code>try / catch</code>で失敗を扱います。</p></article></div><article class="deep"><div><h3>APIからデータを取得する流れ</h3><p><code>fetch</code>はPromiseを返します。通信自体の失敗だけでなく、404や500などHTTPステータスも確認します。利用者へ見せるメッセージと、開発者が調査するログは分けて考えます。</p><div class="callout danger"><strong>秘密情報に注意：</strong> APIキーやパスワードをHTMLやGitHubへ直接書かないでください。サーバー側の環境変数へ置き、ブラウザへ送らない設計にします。</div></div><div class="snippet"><div class="codehead">users.js</div><pre><code><span class="pink">async function</span> getUsers() {
+  <span class="pink">try</span> {
+    <span class="pink">const</span> response = <span class="pink">await</span> fetch(<span class="green">"https://example.com/api/users"</span>);
+    <span class="pink">if</span> (!response.ok) {
+      <span class="pink">throw new</span> Error(<span class="green">`HTTP ${response.status}`</span>);
+    }
+    <span class="pink">return await</span> response.json();
+  } <span class="pink">catch</span> (error) {
+    console.error(<span class="green">"取得に失敗"</span>, error);
+    <span class="pink">return</span> [];
+  }
+}</code></pre></div></article><table class="command-table"><tr><th>コマンド</th><th>役割</th></tr><tr><td><code>node --version</code></td><td>インストール済みNode.jsのバージョンを確認</td></tr><tr><td><code>npm install</code></td><td><code>package.json</code>に基づいて依存関係をインストール</td></tr><tr><td><code>npm run dev</code></td><td>開発用サーバーを起動</td></tr><tr><td><code>npm run build</code></td><td>公開用の最適化された成果物を作成</td></tr><tr><td><code>npm run lint</code></td><td>コードの書き間違いやルール違反を確認</td></tr></table></div></section>
+    <section class="block white"><div class="shell"><div class="heading left"><p class="eyebrow">NEXT.JS IN DETAIL</p><h2>画面とサーバーをどう分けるか</h2><p>App Routerではコンポーネントは基本的にサーバーで実行されます。操作が必要な部分だけクライアントコンポーネントにします。</p></div><div class="concept-grid"><article class="concept"><h3>Server Component</h3><p>データベースやAPIへサーバーからアクセスできます。秘密情報をブラウザへ送らず、送信するJavaScriptも減らせます。</p></article><article class="concept"><h3>Client Component</h3><p>ファイル先頭に<code>'use client'</code>を書きます。State、イベント、ブラウザAPIが必要な部分で使います。</p></article><article class="concept"><h3>Route Handler</h3><p><code>app/api/.../route.ts</code>でGETやPOSTを受けるAPIを作れます。入力値の検証とエラー処理が重要です。</p></article></div><article class="deep"><div><h3>サーバーでデータを取得して表示する</h3><p>サーバーコンポーネントは<code>async</code>関数にでき、直接<code>await</code>できます。読み込み中は<code>loading.tsx</code>、見つからない場合は<code>not-found.tsx</code>、予期しない失敗は<code>error.tsx</code>で画面を分けます。</p><ul><li><code>layout.tsx</code>：複数ページで共有する枠</li><li><code>page.tsx</code>：URLに対応するページ</li><li><code>[id]</code>：商品番号など変化するURL部分</li><li><code>Link</code>：ページを再読込せず移動するリンク</li></ul></div><div class="snippet"><div class="codehead">app/products/page.tsx</div><pre><code><span class="pink">import</span> Link <span class="pink">from</span> <span class="green">"next/link"</span>;
+
+<span class="pink">export default async function</span> ProductsPage() {
+  <span class="pink">const</span> response = <span class="pink">await</span> fetch(
+    <span class="green">"https://example.com/api/products"</span>
+  );
+  <span class="pink">if</span> (!response.ok) <span class="pink">throw new</span> Error(<span class="green">"取得失敗"</span>);
+  <span class="pink">const</span> products = <span class="pink">await</span> response.json();
+
+  <span class="pink">return</span> (
+    &lt;<span class="blue">ul</span>&gt;{products.map(product =&gt; (
+      &lt;<span class="blue">li</span> key={product.id}&gt;
+        &lt;Link href={`/products/${product.id}`}&gt;
+          {product.name}
+        &lt;/Link&gt;
+      &lt;/<span class="blue">li</span>&gt;
+    ))}&lt;/<span class="blue">ul</span>&gt;
+  );
+}</code></pre></div></article></div></section>
     <section class="block"><div class="shell folder-grid"><div><p class="eyebrow">FOLDER = URL</p><h2>Next.jsのフォルダ構成</h2><p>App Routerでは、<code>app</code>フォルダ内の<code>page.tsx</code>がページになります。</p><div class="map"><div><code>app/page.tsx</code><b>→</b><em>/</em></div><div><code>app/about/page.tsx</code><b>→</b><em>/about</em></div><div><code>app/contact/page.tsx</code><b>→</b><em>/contact</em></div></div></div><pre class="tree"><code>my-app/
 ├── <b>app/</b>
 │   ├── page.tsx
@@ -61,7 +142,8 @@ server.listen(<span class="gold">3000</span>);</code></pre></div></article><arti
 └── next.config.ts</code></pre></div></section>
     <section class="block white" id="start"><div class="shell"><div class="heading"><p class="eyebrow">YOUR FIRST NEXT.JS APP</p><h2>最初のアプリを起動する</h2><p>Node.jsをインストールしたら、ターミナルで順番に実行します。</p></div><ol class="steps"><li><span>1</span><div><small>プロジェクトを作る</small><code>npx create-next-app@latest my-app</code></div></li><li><span>2</span><div><small>フォルダへ移動する</small><code>cd my-app</code></div></li><li><span>3</span><div><small>開発サーバーを起動する</small><code>npm run dev</code></div></li><li><span>4</span><div><small>ブラウザで開く</small><code>http://localhost:3000</code></div></li></ol><div class="note"><span>!</span><div><strong>ターミナルとは？</strong><p>文字でパソコンへ命令するアプリです。Macは「ターミナル」、Windowsは「PowerShell」を使えます。</p></div></div></div></section>
     <section class="block"><div class="shell"><div class="heading"><p class="eyebrow">WHICH ONE?</p><h2>どれを使えばいい？</h2></div><table><thead><tr><th>やりたいこと</th><th>使う技術</th><th>理由</th></tr></thead><tbody><tr><td>画面の部品を練習したい</td><td><span class="pill r">React</span></td><td>UIの考え方へ集中できる</td></tr><tr><td>APIやサーバーを作りたい</td><td><span class="pill n">Node.js</span></td><td>サーバー側のJavaScriptを学べる</td></tr><tr><td>Webサイトを丸ごと作りたい</td><td><span class="pill x">Next.js</span></td><td>画面・ページ・サーバーがそろう</td></tr></tbody></table></div></section>
-    <section class="block white" id="roadmap"><div class="shell"><div class="heading left"><p class="eyebrow">LEARNING ROADMAP</p><h2>おすすめの学習順</h2><p>順番に理解すると迷いにくくなります。</p></div><div class="road"><article><span>STEP 01</span><h3>JavaScriptを復習</h3><p>配列、関数、map、分割代入、importを確認。</p><em>目安：1週間</em></article><article><span>STEP 02</span><h3>ReactでTodoリスト</h3><p>コンポーネント、Props、State、フォームを学ぶ。</p><em>目安：2週間</em></article><article><span>STEP 03</span><h3>Node.jsとnpm</h3><p>ターミナル、パッケージ管理、サーバーを体験。</p><em>目安：1週間</em></article><article><span>STEP 04</span><h3>Next.jsで公開</h3><p>複数ページとデータを含むサイトを作る。</p><em>目安：2〜3週間</em></article></div></div></section>
+    <section class="block white" id="roadmap"><div class="shell"><div class="heading left"><p class="eyebrow">LEARNING ROADMAP</p><h2>おすすめの学習順</h2><p>順番に理解すると迷いにくくなります。</p></div><div class="road"><article><span>STEP 01</span><h3>JavaScriptを復習</h3><p>配列、関数、map、分割代入、importを確認。</p><em>目安：1週間</em></article><article><span>STEP 02</span><h3>ReactでTodoリスト</h3><p>コンポーネント、Props、State、フォームを学ぶ。</p><em>目安：2週間</em></article><article><span>STEP 03</span><h3>Node.jsとnpm</h3><p>ターミナル、パッケージ管理、サーバーを体験。</p><em>目安：1週間</em></article><article><span>STEP 04</span><h3>Next.jsで公開</h3><p>複数ページとデータを含むサイトを作る。</p><em>目安：2〜3週間</em></article></div><div class="project" style="margin-top:35px"><article><h3>演習1：Todoリスト</h3><p>最初はブラウザ内だけで動かします。</p><ul><li>入力欄からTodoを追加</li><li>完了・未完了を切り替え</li><li>削除ボタンをつける</li><li>空文字は追加しない</li></ul><p><strong>学べること：</strong> State、配列の<code>map</code>、イベント、フォーム</p></article><article><h3>演習2：メモアプリ</h3><p>Next.jsで複数ページと保存処理へ進みます。</p><ul><li>メモ一覧と詳細ページ</li><li>新規作成フォーム</li><li>サーバー側で入力検証</li><li>読み込み中・失敗時の表示</li></ul><p><strong>学べること：</strong> ルーティング、Server Component、API、エラー処理</p></article></div></div></section>
+    <section class="block"><div class="shell"><div class="heading left"><p class="eyebrow">DEBUGGING GUIDE</p><h2>よくあるエラーの読み解き方</h2><p>エラーメッセージを消すことではなく、原因を小さく切り分けることがデバッグです。</p></div><table class="command-table"><tr><th>症状</th><th>確認すること</th></tr><tr><td><code>Module not found</code></td><td>import先のパス、ファイル名の大文字・小文字、パッケージのインストールを確認</td></tr><tr><td><code>... is not defined</code></td><td>変数名のスペル、宣言位置、import漏れを確認</td></tr><tr><td>Hydrationエラー</td><td>サーバーとブラウザで最初のHTMLが違っていないか、日時やランダム値を直接表示していないか確認</td></tr><tr><td>画面が更新されない</td><td>Stateを直接書き換えず、更新関数を使っているか確認</td></tr><tr><td>APIが401・403</td><td>認証情報、権限、環境変数が正しいか確認。秘密情報を画面へ表示しない</td></tr></table><div class="callout"><strong>基本手順：</strong> ターミナルまたはブラウザConsoleの最初のエラーを読む → ファイル名と行番号を見る → 直前の変更を確認 → 小さな範囲で再現 → 修正後に再実行、の順で進めます。</div></div></section>
     <section class="block"><div class="shell"><div class="heading left"><p class="eyebrow">MINI GLOSSARY</p><h2>今回の重要ワード</h2></div><dl class="glossary"><div><dt>ライブラリ</dt><dd>必要な機能を選んで使うコードの道具箱。</dd></div><div><dt>フレームワーク</dt><dd>アプリ全体の作り方を用意した土台。</dd></div><div><dt>ランタイム</dt><dd>プログラムを実際に動かす環境。</dd></div><div><dt>JSX</dt><dd>JavaScript内にHTMLのような記述をする構文。</dd></div><div><dt>コンポーネント</dt><dd>画面を構成する再利用できる部品。</dd></div><div><dt>API</dt><dd>アプリ同士がデータをやり取りする窓口。</dd></div></dl></div></section>
     <section class="final"><p class="eyebrow">YOUR NEXT PROJECT</p><h2>まずはTodoリストを<br>作ってみよう。</h2><p>追加する、完了にする、削除する。<br>3つの操作でReactの基本が身につきます。</p><a class="button" href="#start">始め方を確認する ↑</a></section>
   </main>

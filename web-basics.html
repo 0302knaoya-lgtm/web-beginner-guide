@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>はじめてのWeb開発入門</title>
+  <meta name="description" content="HTML・CSS・JavaScriptの役割から最初のWebページ作成まで学べる初心者向けHTML教材">
+  <style>
+    :root{--ink:#182124;--paper:#f3efe6;--white:#fffdf8;--purple:#5c57d8;--mint:#bde8d2;--yellow:#f5ce5a;--coral:#ff8164;--line:#cec8bb}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;line-height:1.8}a{color:inherit;text-decoration:none}code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}code{font-size:.9em}header{max-width:1120px;height:72px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:800}.mark{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:var(--ink);color:#fff}nav{display:flex;gap:25px;font-size:12px;font-weight:700}nav a:hover{color:var(--purple)}
+    .hero{max-width:1120px;min-height:590px;margin:auto;padding:75px 24px 95px;display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}.eyebrow{margin:0 0 14px;color:var(--purple);font:800 11px ui-monospace,monospace;letter-spacing:.16em}.hero h1{margin:0;font-size:clamp(46px,6vw,74px);line-height:1.1;letter-spacing:-.055em}.hero h1 span{color:var(--purple);position:relative}.hero h1 span:after{content:"";position:absolute;z-index:-1;left:0;right:0;bottom:-2px;height:7px;background:var(--yellow);transform:rotate(-1deg)}.lead{margin:27px 0 30px;color:#586265}.button{display:inline-flex;align-items:center;gap:18px;padding:15px 20px;border-radius:6px;background:var(--ink);color:#fff;font-size:13px;font-weight:800;box-shadow:5px 5px 0 var(--mint)}.note{margin-top:20px;color:#6a7376;font-size:12px}
+    .browser{overflow:hidden;border:2px solid var(--ink);border-radius:10px;background:#fff;box-shadow:10px 10px 0 var(--ink);transform:rotate(1deg)}.bar{height:48px;padding:0 16px;display:flex;align-items:center;gap:8px;background:#e7e2d8;border-bottom:1px solid var(--ink)}.bar i{width:10px;height:10px;border-radius:50%;background:var(--coral)}.bar i:nth-child(2){background:var(--yellow)}.bar i:nth-child(3){background:var(--mint)}.address{margin-left:8px;flex:1;padding:5px 10px;border:1px solid #bbb5aa;border-radius:4px;background:#fff;font:10px ui-monospace,monospace}.code-preview{padding:25px;background:#20292d;color:#e4ece9;font:12px/1.9 ui-monospace,monospace}.code-preview p{margin:0}.code-preview b{display:inline-block;width:28px;color:#7f8a8e}.blue{color:#8edfe2}.pink{color:#ff9aaa}.green{color:#b9e4a1}.preview{padding:25px;text-align:center}.preview small{display:block;color:#7c8588;font:9px ui-monospace,monospace}.preview strong{display:block;margin-top:15px;color:var(--purple);font-size:28px}
+    section.block{padding:90px 24px}.white{background:var(--white);border-block:1px solid var(--line)}.dark{background:#232c30;color:#fff}.shell{max-width:1060px;margin:auto}.heading{max-width:680px;margin:0 auto 44px;text-align:center}.heading.left{margin-left:0;text-align:left}.heading h2{margin:0 0 10px;font-size:clamp(30px,4vw,48px);line-height:1.25;letter-spacing:-.04em}.heading>p:last-child{color:#697275}.dark .heading>p:last-child{color:#bdc5c7}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{min-height:335px;padding:28px;border:2px solid var(--ink);border-radius:10px;box-shadow:5px 5px 0 var(--ink)}.card.html{background:#ffe9e1}.card.css{background:#e9e7ff}.card.js{background:#fff3c7}.round{width:55px;height:55px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;background:#fff;font-weight:900}.tag{margin:27px 0 7px;color:var(--purple);font:800 10px ui-monospace,monospace;letter-spacing:.14em}.card h3{margin:0 0 12px;font-size:30px}.card p{color:#566164;font-size:14px}.card code{display:block;margin-top:20px;padding:9px;background:rgba(255,255,255,.72);border-radius:5px;white-space:nowrap}.memory{max-width:820px;margin:43px auto 0;padding:22px 25px;border:1.5px solid var(--ink);border-radius:8px;background:#fff}.memory strong{color:var(--purple)}
+    .flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:12px;align-items:center}.flow li:not(.arrow){min-height:150px;padding:22px;border:1.5px solid var(--ink);border-radius:8px;background:#fff}.flow li>span{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--purple);color:#fff;font-size:11px}.flow b,.flow small{display:block}.flow b{margin-top:15px}.flow small{color:#687275}.arrow{font-size:22px}.flow-note{margin-top:25px;color:#687275;font-size:12px;text-align:center}
+    .practice{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px;align-items:start}.practice h2{font-size:42px;line-height:1.3}.checks{list-style:none;margin:30px 0;padding:0}.checks li{display:flex;gap:13px;align-items:center;padding:9px 0}.checks b{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:var(--mint);font-size:11px}.success{display:flex;gap:13px;padding:18px;border:1.5px solid var(--ink);border-radius:8px;background:#fff4d1}.success span{font-size:23px}.success p{margin:0;font-size:13px}.editor{overflow:hidden;border:1.5px solid #7e898c;border-radius:9px;background:#131b1e;box-shadow:9px 9px 0 rgba(189,232,210,.18)}.editor-head{height:45px;padding:0 16px;display:flex;align-items:center;background:#353e42;color:#fff;font:11px ui-monospace,monospace}.editor pre{margin:0;padding:22px;overflow:auto;color:#dce7e3;font-size:11px;line-height:1.7;tab-size:2}
+    .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.tool{display:flex;gap:18px;padding:24px;border:1.5px solid var(--ink);border-radius:8px;background:#fff}.tool-icon{width:46px;height:46px;flex:0 0 auto;display:grid;place-items:center;border-radius:9px;background:var(--mint);font-size:21px}.tool h3{margin:0}.tool p{margin:4px 0;color:#667174;font-size:13px}
+    .weeks{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ink);border-radius:9px;overflow:hidden}.weeks article{min-height:310px;padding:24px 20px;background:#fff;border-right:1px solid var(--line)}.weeks article:last-child{border:0}.weeks span{color:var(--purple);font:800 10px ui-monospace,monospace}.weeks h3{font-size:18px}.weeks li{margin:7px 0;color:#626d70;font-size:13px}.weeks em{font-style:normal;font-size:11px;font-weight:700}
+    .trouble{display:grid;grid-template-columns:1fr 1fr;gap:14px}.trouble details{padding:20px;border:1.5px solid var(--ink);border-radius:8px;background:#fff}.trouble summary{cursor:pointer;font-weight:800}.trouble summary span{margin-right:12px;color:var(--purple);font:800 11px ui-monospace,monospace}.trouble p{margin:12px 0 0;color:#657073;font-size:13px}.glossary{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:2px solid var(--ink)}.glossary div{padding:22px;border-bottom:1px solid var(--line)}.glossary dt{font-weight:800}.glossary dd{margin:6px 0 0;color:#697275;font-size:13px}.final{padding:95px 24px;text-align:center;background:var(--purple);color:#fff}.final .eyebrow{color:var(--yellow)}.final h2{margin:0;font-size:clamp(34px,5vw,56px);line-height:1.3}.final p{color:#dedfff}footer{max-width:1060px;margin:auto;padding:32px 24px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#687174}
+    @media(max-width:820px){nav{display:none}.hero,.practice{grid-template-columns:1fr}.three,.tools{grid-template-columns:1fr}.three{max-width:560px;margin:auto}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}.weeks{grid-template-columns:1fr 1fr}.weeks article:nth-child(2){border-right:0}.glossary{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){header{height:62px}.hero{padding:55px 18px 75px}.hero h1{font-size:43px}section.block{padding:72px 18px}.weeks,.trouble,.glossary{grid-template-columns:1fr}.weeks article{border-right:0;border-bottom:1px solid var(--line)}footer{flex-direction:column;gap:12px;text-align:center}}
+    .chapter{display:grid;grid-template-columns:.82fr 1.18fr;gap:52px;align-items:start}.chapter+.chapter{margin-top:75px;padding-top:75px;border-top:1px solid var(--line)}.chapter h3{margin:4px 0 14px;font-size:30px;line-height:1.35}.chapter p,.chapter li{color:#5f696c;font-size:14px}.points{padding-left:20px}.points li{margin:8px 0}.sample{overflow:hidden;border:1.5px solid var(--ink);border-radius:9px;background:#20292d;box-shadow:7px 7px 0 var(--mint)}.sample .label{padding:11px 16px;background:#343e42;color:#fff;font:11px ui-monospace,monospace}.sample pre{margin:0;padding:20px;overflow:auto;color:#e3ece8;font-size:11px;line-height:1.75}.explain{margin-top:18px;border-collapse:collapse;width:100%;background:#fff}.explain th,.explain td{padding:12px 14px;border:1px solid var(--line);text-align:left;font-size:12px}.explain th{background:#e9e5db}.concepts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.concept{padding:22px;border:1.5px solid var(--ink);border-radius:8px;background:#fff}.concept h3{margin:0 0 8px;font-size:18px}.concept p{margin:0;color:#667174;font-size:13px}.box-model{margin-top:25px;padding:25px;border:18px solid #f2ca58;background:#e8a086;box-shadow:inset 0 0 0 18px #bde8d2;text-align:center}.box-model strong{display:block;padding:28px;background:#fff}.exercise{margin-top:28px;padding:22px 25px;border-left:5px solid var(--purple);background:#eeecff}.exercise h3{margin:0 0 8px;font-size:18px}.exercise p{margin:0;color:#5c6669;font-size:13px}.check-table{width:100%;border-collapse:collapse;background:#fff}.check-table th,.check-table td{padding:15px;border:1px solid var(--line);text-align:left;font-size:13px}.check-table th{background:#e9e5db}.yes{color:#267251;font-weight:800}
+    @media(max-width:820px){.chapter{grid-template-columns:1fr}.concepts{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header><a class="brand" href="#top"><span class="mark">W</span><span>Webのはじめかた</span></a><nav><a href="#basics">3つの基本</a><a href="#practice">ミニ制作</a><a href="#roadmap">ロードマップ</a><a href="#glossary">用語集</a></nav></header>
+  <main>
+    <section class="hero" id="top"><div><p class="eyebrow">はじめてのWeb開発</p><h1>Webページは、<br><span>3つの言葉</span>でできている。</h1><p class="lead">HTMLで骨組みをつくり、CSSで見た目を整え、JavaScriptで動きを加える。まずは全体像をつかんで、小さなページを作るところまで進みましょう。</p><a class="button" href="#basics">10分で基本をつかむ ↓</a><p class="note">専門知識ゼロでOK · パソコン1台から始められます</p></div><div class="browser" aria-label="Webページを構成するコードの例"><div class="bar"><i></i><i></i><i></i><div class="address">my-first-page.html</div></div><div class="code-preview"><p><b>01</b> <span class="blue">&lt;h1&gt;</span>こんにちは！<span class="blue">&lt;/h1&gt;</span></p><p><b>02</b> <span class="pink">h1</span> { <span class="green">color</span>: #5955d9; }</p><p><b>03</b> console.log("できた！");</p></div><div class="preview"><small>PREVIEW</small><strong>こんにちは！</strong></div></div></section>
+    <section class="block white" id="basics"><div class="shell"><div class="heading"><p class="eyebrow">THE BIG THREE</p><h2>まず覚える、3つの基本</h2><p>難しい名前に見えても、役割はとてもシンプルです。</p></div><div class="three"><article class="card html"><span class="round">&lt;/&gt;</span><p class="tag">STRUCTURE</p><h3>HTML</h3><p>見出し、文章、画像など、ページの「中身と骨組み」をつくります。</p><code>&lt;h1&gt;こんにちは！&lt;/h1&gt;</code></article><article class="card css"><span class="round">#</span><p class="tag">STYLE</p><h3>CSS</h3><p>色、余白、文字サイズなど、ページの「見た目」を整えます。</p><code>h1 { color: blue; }</code></article><article class="card js"><span class="round">JS</span><p class="tag">ACTION</p><h3>JavaScript</h3><p>クリックへの反応など、ページに「動きと機能」を加えます。</p><code>alert('こんにちは！');</code></article></div><p class="memory"><strong>家づくりに例えると：</strong> HTMLは柱や壁、CSSは色やインテリア、JavaScriptは照明や自動ドアです。</p></div></section>
+    <section class="block"><div class="shell"><div class="heading left"><p class="eyebrow">HOW THE WEB WORKS</p><h2>ページが届くまで</h2><p>URLを入力してから画面に表示されるまでは、4ステップです。</p></div><ol class="flow"><li><span>1</span><b>URLを入力</b><small>ブラウザに住所を伝える</small></li><li class="arrow">→</li><li><span>2</span><b>リクエスト</b><small>サーバーへお願いを送る</small></li><li class="arrow">→</li><li><span>3</span><b>レスポンス</b><small>HTMLなどが返ってくる</small></li><li class="arrow">→</li><li><span>4</span><b>画面に表示</b><small>ブラウザが組み立てる</small></li></ol><p class="flow-note">ブラウザ：ChromeやSafariなどページを表示するアプリ ／ サーバー：ページのデータを保管して届けるコンピューター</p></div></section>
+    <section class="block dark" id="practice"><div class="shell practice"><div><p class="eyebrow">LET'S BUILD</p><h2>最初の1ページを作ってみよう</h2><p>右のコードをコピーしてテキストエディタへ貼り、<code>index.html</code>という名前で保存します。ファイルをダブルクリックすればブラウザで表示できます。</p><ol class="checks"><li><b>1</b><span>メモ帳やVS Codeを開く</span></li><li><b>2</b><span>コードを貼り付ける</span></li><li><b>3</b><span><code>index.html</code>で保存する</span></li><li><b>4</b><span>ブラウザで開く</span></li></ol><div class="success"><span>✓</span><p><strong>成功の目印</strong><br>紫色の見出しとボタンが表示されれば完成です。</p></div></div><div class="editor"><div class="editor-head">index.html</div><pre><code>&lt;!doctype html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;わたしの最初のページ&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; max-width: 640px;
+           margin: 80px auto; padding: 0 24px; }
+    h1 { color: #5b57d9; }
+    button { padding: 12px 18px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;こんにちは、Web！&lt;/h1&gt;
+  &lt;p&gt;これは、わたしが作った最初のページです。&lt;/p&gt;
+  &lt;button&gt;はじめてのボタン&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></section>
+    <section class="block white"><div class="shell"><div class="heading"><p class="eyebrow">STARTER KIT</p><h2>最初に用意するもの</h2><p>高価なソフトは不要。どれも無料で始められます。</p></div><div class="tools"><article class="tool"><span class="tool-icon">⌨</span><div><h3>テキストエディタ</h3><p>コードを書くアプリ。まずはVS Codeが定番です。</p></div></article><article class="tool"><span class="tool-icon">◎</span><div><h3>Webブラウザ</h3><p>ページを表示して確認。ChromeやSafariでOK。</p></div></article><article class="tool"><span class="tool-icon">▱</span><div><h3>作業フォルダ</h3><p>HTML、CSS、画像をひとまとめにして管理します。</p></div></article></div></div></section>
+    <section class="block" id="deep-dive"><div class="shell"><div class="heading left"><p class="eyebrow">DEEP DIVE</p><h2>3つの言葉を、もう一段深く</h2><p>ここからは「書き方」と「なぜそう書くか」を、実際のコードで確認します。</p></div>
+      <article class="chapter"><div><p class="eyebrow">01 · HTML</p><h3>文書の意味と構造を伝える</h3><p>HTMLは見た目ではなく、情報の意味を表します。見出しなら<code>h1</code>、段落なら<code>p</code>、移動先がある文字なら<code>a</code>を使います。適切なタグを使うと、検索エンジンや音声読み上げにも内容が伝わりやすくなります。</p><ul class="points"><li><code>head</code>にはタイトルや文字コードなど画面に直接出ない設定を書く</li><li><code>body</code>には見出し・文章・画像など画面に出る内容を書く</li><li><code>header</code>、<code>main</code>、<code>footer</code>でページの大きな役割を分ける</li><li>同じページ内で<code>h1</code>から急に<code>h3</code>へ飛ばさず、見出しの順番を守る</li></ul></div><div><div class="sample"><div class="label">意味のあるHTML</div><pre><code>&lt;header&gt;
+  &lt;h1&gt;山田花子のポートフォリオ&lt;/h1&gt;
+  &lt;nav&gt;&lt;a href="#works"&gt;制作物&lt;/a&gt;&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;section id="works"&gt;
+    &lt;h2&gt;制作物&lt;/h2&gt;
+    &lt;article&gt;
+      &lt;h3&gt;カフェの紹介サイト&lt;/h3&gt;
+      &lt;img src="cafe.jpg" alt="カフェ店内の写真"&gt;
+      &lt;p&gt;HTMLとCSSで制作しました。&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre></div><table class="explain"><tr><th>属性</th><th>役割</th></tr><tr><td><code>href</code></td><td>リンクの移動先を指定</td></tr><tr><td><code>src</code></td><td>画像など読み込むファイルを指定</td></tr><tr><td><code>alt</code></td><td>画像が表す内容を短い言葉で説明</td></tr><tr><td><code>id</code></td><td>ページ内で重複しない目印をつける</td></tr></table></div></article>
+      <article class="chapter"><div><p class="eyebrow">02 · CSS</p><h3>セレクタ・プロパティ・値で見た目を指定する</h3><p><code>.card { color: navy; }</code>では、<code>.card</code>が対象を選ぶ「セレクタ」、<code>color</code>が変更項目の「プロパティ」、<code>navy</code>が設定する「値」です。CSSが効かないときは、この3点とスペルを順に確認します。</p><ul class="points"><li>要素の実際の幅は、内容・余白・枠線の合計で決まる</li><li><code>box-sizing: border-box</code>で幅の計算が理解しやすくなる</li><li>横並びには<code>display: flex</code>、格子状には<code>display: grid</code>が便利</li><li>スマホ対応では固定幅を避け、<code>max-width</code>とメディアクエリを使う</li></ul><div class="box-model"><strong>content（内容）<br><small>内側：padding ／ 外側：border・margin</small></strong></div></div><div><div class="sample"><div class="label">style.css</div><pre><code>* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: #222;
+  font-family: sans-serif;
+}
+
+.cards {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .cards { grid-template-columns: 1fr; }
+}</code></pre></div><div class="exercise"><h3>試してみよう</h3><p><code>gap: 20px</code>を<code>40px</code>へ、画面幅の境界を<code>700px</code>から<code>900px</code>へ変え、表示の違いを観察しましょう。</p></div></div></article>
+      <article class="chapter"><div><p class="eyebrow">03 · JAVASCRIPT</p><h3>入力を受け取り、判断し、画面を変える</h3><p>JavaScriptの基本は「値を記憶する」「処理をまとめる」「条件で分ける」です。ブラウザではDOMという仕組みを通してHTML要素を探し、文章やクラスを変更できます。</p><ul class="points"><li><code>const</code>は再代入しない値、<code>let</code>は後で変更する値に使う</li><li>関数は何度も使う処理へ名前をつけたもの</li><li><code>if</code>で条件に応じて実行内容を変える</li><li><code>addEventListener</code>でクリックや入力を受け取る</li></ul></div><div><div class="sample"><div class="label">button-example.js</div><pre><code>const button = document.querySelector('#hello');
+const message = document.querySelector('#message');
+let count = 0;
+
+function showMessage() {
+  count = count + 1;
+  if (count === 1) {
+    message.textContent = 'はじめてのクリック！';
+  } else {
+    message.textContent = `${count}回クリックしました`;
+  }
+}
+
+button.addEventListener('click', showMessage);</code></pre></div><table class="explain"><tr><th>コード</th><th>意味</th></tr><tr><td><code>querySelector</code></td><td>CSSセレクタでHTML要素を探す</td></tr><tr><td><code>textContent</code></td><td>要素内の文字を読み書きする</td></tr><tr><td><code>===</code></td><td>値と型が同じか厳密に比較する</td></tr><tr><td><code>${...}</code></td><td>文字列の中へ値を埋め込む</td></tr></table></div></article>
+    </div></section>
+    <section class="block white"><div class="shell"><div class="heading left"><p class="eyebrow">GOOD WEB PRACTICES</p><h2>公開前に知っておきたい品質の基本</h2><p>「表示できる」から一歩進んで、誰にとっても使いやすいページを目指します。</p></div><div class="concepts"><article class="concept"><h3>アクセシビリティ</h3><p>画像に適切な<code>alt</code>をつけ、ボタンは<code>div</code>ではなく<code>button</code>で作ります。キーボードだけでも操作できるか確認します。</p></article><article class="concept"><h3>レスポンシブ</h3><p>ブラウザ幅を狭くして、文字が小さすぎないか、横スクロールが出ないか、ボタンが押しやすいかを確認します。</p></article><article class="concept"><h3>読み込み速度</h3><p>画像は必要以上に大きくせず、用途に合った形式とサイズへ調整します。不要なフォントやライブラリも増やしすぎないようにします。</p></article></div><div class="exercise"><h3>開発者ツールの使い方</h3><p>ブラウザで右クリックして「検証」を開きます。ElementsではHTMLとCSS、ConsoleではJavaScriptのエラー、Networkでは読み込んだファイルを確認できます。赤いエラーが出たら、最初の1件を読み、ファイル名と行番号から直すのが基本です。</p></div></div></section>
+    <section class="block"><div class="shell"><div class="heading left"><p class="eyebrow">PUBLISH CHECKLIST</p><h2>GitHubへ置く前の確認</h2><p>公開後に困らないよう、次の項目を一つずつ確認します。</p></div><table class="check-table"><tr><th>確認項目</th><th>見るポイント</th></tr><tr><td class="yes">✓ ファイル名</td><td>入口のページは<code>index.html</code>。大文字・小文字も区別する</td></tr><tr><td class="yes">✓ リンク</td><td>すべてのリンクとページ内移動を実際にクリックする</td></tr><tr><td class="yes">✓ 画像</td><td>パスが正しく、画像がなくても意味が伝わる<code>alt</code>がある</td></tr><tr><td class="yes">✓ スマホ表示</td><td>狭い画面で横にはみ出さず、文字とボタンが十分な大きさ</td></tr><tr><td class="yes">✓ 表記</td><td>誤字、仮の文章、個人情報、公開してはいけない鍵やパスワードがない</td></tr></table></div></section>
+    <section class="block" id="roadmap"><div class="shell"><div class="heading left"><p class="eyebrow">4-WEEK ROADMAP</p><h2>迷わない学習の順番</h2><p>毎日30〜60分。完璧を目指さず、作りながら覚えましょう。</p></div><div class="weeks"><article><span>WEEK 01</span><h3>HTMLで中身をつくる</h3><ul><li>見出し・文章・リンク</li><li>画像・リスト・フォーム</li><li>意味のあるタグ</li></ul><em>ゴール：自己紹介ページ</em></article><article><span>WEEK 02</span><h3>CSSで見た目を整える</h3><ul><li>色・文字・余白</li><li>Flexboxで横並び</li><li>スマホ対応</li></ul><em>ゴール：見やすい紹介サイト</em></article><article><span>WEEK 03</span><h3>JavaScriptで動かす</h3><ul><li>変数・条件分岐・関数</li><li>クリックイベント</li><li>DOMの基本</li></ul><em>ゴール：簡単なクイズ</em></article><article><span>WEEK 04</span><h3>公開して改善する</h3><ul><li>Git・GitHubの基本</li><li>無料サービスで公開</li><li>他の人に使ってもらう</li></ul><em>ゴール：URLを共有する</em></article></div></div></section>
+    <section class="block white"><div class="shell"><div class="heading"><p class="eyebrow">WHEN YOU GET STUCK</p><h2>動かないときの確認リスト</h2></div><div class="trouble"><details><summary><span>01</span>保存した？</summary><p>変更後はまず保存。エディタのタブに丸印があれば未保存の合図です。</p></details><details><summary><span>02</span>ファイル名は正しい？</summary><p><code>index.html.txt</code>ではなく<code>index.html</code>か確認します。</p></details><details><summary><span>03</span>記号が抜けていない？</summary><p>閉じタグ、かっこ、引用符が左右そろっているか確認します。</p></details><details><summary><span>04</span>ブラウザを更新した？</summary><p>保存後は再読み込みボタンを押して最新の表示にします。</p></details></div></div></section>
+    <section class="block" id="glossary"><div class="shell"><div class="heading left"><p class="eyebrow">MINI GLOSSARY</p><h2>最初に出会う用語</h2></div><dl class="glossary"><div><dt>タグ</dt><dd><code>&lt;h1&gt;</code>のようにHTMLで要素の意味を示す印。</dd></div><div><dt>要素</dt><dd>見出しや文章など、ページを構成する一つひとつの部品。</dd></div><div><dt>属性</dt><dd>リンク先など、タグへ追加情報を渡すもの。</dd></div><div><dt>クラス</dt><dd>CSSを当てる要素につける再利用可能な名前。</dd></div><div><dt>レスポンシブ</dt><dd>画面幅に合わせて表示を変える設計。</dd></div><div><dt>デバッグ</dt><dd>不具合の原因を見つけて直す作業。</dd></div></dl></div></section>
+    <section class="final"><p class="eyebrow">READY?</p><h2>「作ってみたい」が、<br>いちばん良い教材です。</h2><p>小さく作る → ブラウザで見る → 一つ直す。<br>この繰り返しがWeb開発の基本です。</p></section>
+  </main>
+  <footer><a class="brand" href="#top"><span class="mark">W</span><span>Webのはじめかた</span></a><span>HTML / CSS / JavaScript 入門</span></footer>
+</body>
+</html>
